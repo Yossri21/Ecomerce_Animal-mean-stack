@@ -1,0 +1,20 @@
+
+<div class="container">
+<div class="row" style="margin-top:20px">
+  <div class="col-md-4 portfolio-item" *ngFor="let animal of animals">
+    <div class="card">
+      <a href="#"> <img class="card-img-top" src="{{animal.Image}}" alt="{{animal.title}}"></a>
+      <div class="card-body">
+        <h4 class="card-title">
+           {{ animal.title }}
+        </h4>
+        <p> {{ animal.description }} </p>
+        <a [routerLink]="['/animal-details', animal._id]" class="btn btn-success"> Details </a>
+      </div>
+    </div>
+    <br>
+  </div>
+</div>
+</div>
+<br>
+

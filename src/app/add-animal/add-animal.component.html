@@ -1,0 +1,51 @@
+<div class="container">
+  <h1> Add new animal here </h1>
+  <div class="col-md-6">
+    <form (ngSubmit)="saveanimal()" #animalForum="ngForm">
+      <div class="form-group">
+        <label for="title"> Title </label>
+        <input type="text" class="form-control" [(ngModel)]="animal.title" name="title" required >
+      </div>
+      <div class="form-group">
+      <label> Description </label>
+        <input type="text" class="form-control" [(ngModel)]="animal.description" name="description" required>
+      </div>
+
+      <div class="form-group">
+        <label> Price </label>
+        <input type="number" class="form-control" [(ngModel)]="animal.Price" name="Price" required>
+      </div>
+
+      <div class="form-group">
+        <label>  Age </label>
+        <input type="number" class="form-control" [(ngModel)]="animal.Age" name="Age" required>
+      </div>
+
+      <div class="form-group">
+        <label>  Weight </label>
+        <input type="number" class="form-control" [(ngModel)]="animal.Weight" name="Weight" required>
+      </div>
+
+      <div class="form-group">
+        <label>  Image </label>
+        <input type="text" class="form-control" [(ngModel)]="animal.Image" name="Image" required>
+      </div>
+
+      <label >Categorie</label>
+      <select required class="form-control"  name="Categorie" [(ngModel)]="animal.Categorie">
+        <option value="Cat">Cat</option>
+        <option value="Dog">Dog</option>
+        <option value="Bird">Bird</option>
+        <option value="Cow">Cow</option>
+        <option value="Lamb">Lamb</option>
+        <option value="Horse">Horse</option>
+        <option value="Horse">Other</option>
+      </select>
+
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-success" [disabled]="!animalForum.form.valid">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
