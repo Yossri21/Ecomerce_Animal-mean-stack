@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 import { DataTablesModule } from 'angular-datatables';
 
@@ -13,6 +13,9 @@ import { AnimalDetailsComponent } from './animal-details/animal-details.componen
 import { AddAnimalComponent } from './add-animal/add-animal.component';
 import { EditAnimalComponent } from './edit-animal/edit-animal.component';
 import { SearchResultComponent } from './search-result/search-result.component';
+import { AuthComponent } from './auth/auth.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 
 
@@ -46,6 +49,21 @@ const appRoutes: Routes = [
     data:{title: 'Search result'}
   },
 
+  {
+    path: 'auth',
+    component: AuthComponent
+  },
+
+  {
+    path: 'auth/login',
+    component: LoginComponent
+  },
+
+  {
+    path: 'auth/register',
+    component: RegisterComponent
+  },
+
   { path: '',
     redirectTo: '/animals',
     pathMatch: 'full'
@@ -61,11 +79,15 @@ const appRoutes: Routes = [
     AnimalDetailsComponent,
     AddAnimalComponent,
     EditAnimalComponent,
-    SearchResultComponent
+    SearchResultComponent,
+    AuthComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(
       appRoutes,

@@ -3,12 +3,11 @@ const Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
 
 var UserSchema = new Schema({
+  email : String,
+  password : String,
   name : String,
-  Lastname: String,
+  lastname: String,
   phone : Number,
-  Email : String,
-  PWD : String,
-  Adress : String,
-  Statue : Boolean
+  address : String
 });
 module.exports = mongoose.model('User', UserSchema);
