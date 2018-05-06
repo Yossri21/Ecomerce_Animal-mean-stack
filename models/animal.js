@@ -11,7 +11,10 @@ var AnimalSchema = new Schema({
   Age: Number,
   Weight : Number,
   Image : [String],
-  user: Schema.ObjectId
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }
 });
 
 module.exports = mongoose.model('Animal', AnimalSchema);

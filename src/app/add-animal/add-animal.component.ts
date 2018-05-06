@@ -10,13 +10,19 @@ import { HttpClient } from '@angular/common/http';
 export class AddAnimalComponent implements OnInit {
   animal={};
 
+
   constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
   }
 
+
+
   saveanimal() {
-    this.http.post('/animal', this.animal)
+    const token = localStorage.getItem('token')
+      ? '?token=' + localStorage.getItem('token')
+      : '';
+    this.http.post('/animal' + token, this.animal)
       .subscribe(res => {
           let id = res['_id'];
           this.router.navigate(['/animal-details', id]);

@@ -23,8 +23,11 @@ export class EditAnimalComponent implements OnInit {
   }
 
   updateAnimal(id) {
+    const token = localStorage.getItem('token')
+      ? '?token=' + localStorage.getItem('token')
+      : '';
     this.animal.Created = Date.now();
-    this.http.put('/animal/'+id, this.animal)
+    this.http.put('/animal/'+id + token, this.animal)
       .subscribe(res => {
           let id = res['_id'];
           this.router.navigate(['/animal-details', id]);

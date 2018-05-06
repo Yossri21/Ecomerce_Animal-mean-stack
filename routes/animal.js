@@ -2,10 +2,14 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var Animal = require('../models/animal.js');
+var jwt = require('jsonwebtoken');
+var User = require('../models/user.js');
 
 /* GET ALL Animal */
 router.get('/', function(req, res, next) {
-  Animal.find(function (err, products) {
+  Animal.find()
+    .populate('owner', 'name')
+    .exec(function (err, products) {
     if (err) return next(err);
     res.json(products);
   });
@@ -13,19 +17,38 @@ router.get('/', function(req, res, next) {
 
 /* GET SINGLE Animal BY ID */
 router.get('/:id', function(req, res, next) {
-  Animal.findById(req.params.id, function (err, post) {
+  Animal.findById(req.params.id).populate('owner', 'name').exec(function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
 });
 
+router.use('/', function (req, res, next) {
+  jwt.verify(req.query.token, 'azeqsd12458787', function (err, decoded) {
+    if (err) {
+      return res.status(401).json({
+        title: 'Not Authenticated',
+        error: err
+      });
+    }
+    next();
+  })
+});
+
 /* SAVE Animal */
 router.post('/', function(req, res, next) {
-  Animal.create(req.body, function (err, post) {
-    if (err) return next(err);
-    res.json(post);
+
+  var decoded = jwt.decode(req.query.token);
+
+    var animal = new Animal(req.body);
+    animal.owner = decoded.user._id;
+    animal.save(function (err, post) {
+      if (err) return next(err);
+      res.json(post);
+    });
+
   });
-});
+
 
 /* UPDATE Animal */
 router.put('/:id', function(req, res, next) {

@@ -1,7 +1,7 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-md-12">
+    <div *ngIf="checkOwner()" class="col-md-12">
       <a [routerLink]="['/edit-animal', animal._id]" class="btn btn-success">EDIT</a>
       <button class="btn btn-danger" type="button" (click)="deleteAnimal(animal._id)">DELETE</button>
     </div>
@@ -11,14 +11,17 @@
   <img class="card-img-top" src="{{animal.Image}}" style="max-height: 250px; width: auto;" alt="{{animal.title}}">
   <dl class="list">
     <dt>Price</dt>
-    <dd>{{ animal.Price }}</dd>
+    <dd>{{ animal?.Price }}</dd>
+    <dt>owner</dt>
+    <dd>{{ animal?.owner.name }}</dd>
+    <dt>owner phone</dt>
     <dt>Categorie</dt>
-    <dd>{{ animal.Categorie }}</dd>
+    <dd>{{ animal?.Categorie }}</dd>
     <dt>weight</dt>
-    <dd>{{ animal.Weight }}</dd>
+    <dd>{{ animal?.Weight }}</dd>
     <dt>Date de creation</dt>
-    <dd>{{ animal.Created }}</dd>
+    <dd>{{ animal?.Created }}</dd>
     <dt>AGE</dt>
-    <dd>{{ animal.Age }}</dd>
+    <dd>{{ animal?.Age }}</dd>
   </dl>
 </div>
