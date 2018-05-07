@@ -19,6 +19,7 @@ import { SigninComponent } from './aaauth/signin/signin.component';
 import { SignupComponent } from './aaauth/signup/signup.component';
 import { LogoutComponent } from './aaauth/logout/logout.component';
 import {AuthService} from "./aaauth/auth.service";
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -92,6 +93,7 @@ const appRoutes: Routes = [
     SigninComponent,
     SignupComponent,
     LogoutComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

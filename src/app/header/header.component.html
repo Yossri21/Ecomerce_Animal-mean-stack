@@ -17,8 +17,11 @@
       </li>
 
       <li class="nav-link">
-        <a [routerLink]="['/add-animal']" > ADD Animal
+        <a *ngIf="isLoggedIn()" [routerLink]="['/add-animal']" > ADD Animal
         </a>
+        <a  *ngIf="!isLoggedIn()" [routerLink]="['/login']" > ADD Animal
+        </a>
+
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
